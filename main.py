@@ -81,27 +81,26 @@ all_sprites = pygame.sprite.Group()
 clock = pygame.time.Clock()
 
 running = True
+check = True
 while running:
+    screen.fill(pygame.Color((178, 250, 255)))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            a = 400, 400
-            s = 0
-            args = [a, s]
-            hello()
+            if check:
+                a = 400, 400
+                s = 0
+                args = [a, s]
+                hello()
+                check = False
     real_pos = pygame.mouse.get_pos()
-    # print(pos[1])
-    if real_pos[1] < 100:
-        pos = (real_pos[0], 100)
-    else:
-        pos = (real_pos[0], real_pos[1])
+    pos = (real_pos[0], 150)
     pygame.draw.circle(screen, (0, 0, 255), pos, 20)
-    screen.fill(pygame.Color((178, 250, 255)))
     all_sprites.draw(screen)
     all_sprites.update()
     pygame.display.flip()
-    clock.tick(50)
+    clock.tick(80)
 pygame.quit()
 
 
