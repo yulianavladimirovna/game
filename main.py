@@ -14,7 +14,12 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    pos = pygame.mouse.get_pos()
+    real_pos = pygame.mouse.get_pos()
+    #print(pos[1])
+    if real_pos[1] < 100:
+        pos = (real_pos[0], 100)
+    else:
+        pos = (real_pos[0], real_pos[1])
     pygame.draw.circle(screen, (0, 0, 255), pos, 20)
     pygame.display.flip()
     clock.tick(50)
